@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.view.View
 import com.android.ql.restaurant.R
+import com.android.ql.restaurant.ui.activity.FragmentContainerActivity
 import com.android.ql.restaurant.ui.fragment.base.BaseNetWorkingFragment
 import kotlinx.android.synthetic.main.fragment_select_num_and_time_layout.*
 import org.jetbrains.anko.support.v4.toast
@@ -60,6 +61,7 @@ class SelectNumAndTimeFragment :BaseNetWorkingFragment(){
                 toast("請先選擇預計人數")
                 return@setOnClickListener
             }
+            FragmentContainerActivity.from(mContext).setClazz(SelectTicketResultFragment::class.java).setTitle("餐廳取票").setNeedNetWorking(false).start()
         }
     }
 }

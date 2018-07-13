@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:minHeight="200dp"
+    android:background="#fdf7d7"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableTop="@drawable/logo"
+        android:drawablePadding="20dp"
+        android:gravity="center"
+        android:text="歡迎預訂\n泰廚泰國菜館"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/sp_16"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

@@ -47,6 +47,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/mTvMinePersonalInfo"
             android:text="個人信息"
             style="@style/style_tv_1" />
 
@@ -58,6 +59,7 @@
             android:background="@color/lineColor" />
 
         <TextView
+            android:id="@+id/mTvMineOrder"
             android:text="我的預約"
             style="@style/style_tv_1"
             android:drawableLeft="@drawable/icon_order_success"/>
@@ -70,6 +72,7 @@
             android:background="@color/lineColor" />
 
         <TextView
+            android:id="@+id/mTvMineCallRes"
             android:text="聯繫餐廳"
             style="@style/style_tv_1"
             android:drawableLeft="@drawable/icon_phone"/>
