@@ -5,13 +5,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.android.ql.restaurant"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -22,7 +23,30 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'de.keyboardsurfer.android.widget:crouton:1.8.4'
+    /*implementation rootProject.ext.dependencies["libSupportAppcompat"]*/
+    implementation rootProject.ext.dependencies["libSupportDesign"]
+    implementation rootProject.ext.dependencies["libRxAndroid"]
+    implementation rootProject.ext.dependencies["libRetrofit"]
+    implementation rootProject.ext.dependencies["libRetrofitConverterGson"]
+    implementation rootProject.ext.dependencies["libRetrofitAdapterRxJava"]
+    implementation rootProject.ext.dependencies["libRetrofitAdapterScalars"]
+    implementation rootProject.ext.dependencies["libOkHttpLoggingInterceptor"]
+    api rootProject.ext.dependencies["libDagger"]
+    annotationProcessor rootProject.ext.dependencies["libDaggerCompiler"]
+    implementation rootProject.ext.dependencies["libBaseRecyclerViewAdapterHelper"]
+    implementation rootProject.ext.dependencies["libGlide"]
+    implementation rootProject.ext.dependencies["libGlideTransformations"]
+    implementation rootProject.ext.dependencies["libMatisse"]
+    implementation rootProject.ext.dependencies["libLuban"]
+    implementation rootProject.ext.dependencies["libAnko"]
+    implementation rootProject.ext.dependencies["libAnkoCommons"]
+    implementation rootProject.ext.dependencies["libEasypermissions"]
+    implementation rootProject.ext.dependencies["libGson"]
+    implementation rootProject.ext.dependencies["libCardview"]
+    implementation rootProject.ext.dependencies["libFlexBox"]
+    implementation rootProject.ext.dependencies["libMultiDex"]
+
 }

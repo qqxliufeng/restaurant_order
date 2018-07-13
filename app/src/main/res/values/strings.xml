@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">泰廚泰國菜館</string>
+
+    <string name="login_welcome_logo">歡迎預訂\n泰廚泰國菜館</string>
 </resources>

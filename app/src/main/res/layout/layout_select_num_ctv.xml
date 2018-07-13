@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/style_ctv_1"
+    android:checked="true"
+    android:text="1"
+    tools:showIn="@layout/dialog_select_num_layout" />

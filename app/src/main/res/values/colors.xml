@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#ff880015</color>
+    <color name="colorPrimaryDark">#ff880015</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="textRedColor">#880015</color>
+
+    <color name="lineColor">#C9C9C9</color>
+
+    <color name="rippleColor">#eeeeee</color>
+
+    <color name="normalTextColor">#a4a4a4</color>
+
+    <color name="deepTextColor">#444444</color>
+
 </resources>

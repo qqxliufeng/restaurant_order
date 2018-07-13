@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+
+        <Button
+            android:id="@+id/mBtSelectTableNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:layout_marginRight="@dimen/dp_40"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:text="立即取票"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            android:background="@drawable/shape_bt_2"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f2f2f2"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp_10"
+        android:textColor="#666"
+        android:text="聯繫店家" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#666"
+        android:padding="@dimen/dp_10"
+        android:text="TEL:00123234234" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#666"
+        android:padding="@dimen/dp_10"
+        android:text="地址：香港九龍旺角通菜街132號" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

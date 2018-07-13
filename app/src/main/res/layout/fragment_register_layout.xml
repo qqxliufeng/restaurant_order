@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitEnd"
+        android:src="@drawable/img_login_bg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableTop="@drawable/logo"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:text="@string/login_welcome_logo"
+            android:textColor="@color/textRedColor"
+            android:textSize="@dimen/sp_16" />
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/style_til_1"
+            android:layout_marginTop="20dp">
+
+            <com.android.ql.restaurant.ui.widget.DJEditText
+                style="@style/style_et_1"
+                android:hint="請輸入手機號"
+                android:paddingRight="15dp"
+                android:inputType="phone"
+                android:maxLength="11" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/style_til_1"
+            android:layout_marginTop="10dp"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                style="@style/style_et_1"
+                android:hint="請輸入密碼"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/style_til_1"
+            android:layout_marginTop="10dp"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                style="@style/style_et_1"
+                android:hint="請再次輸入密碼"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/shape_bt_1"
+            android:text="注 冊"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp_16" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
+            android:text="已有帳號登錄"
+            android:textColor="@color/textRedColor"
+            android:textSize="@dimen/sp_14" />
+
+    </LinearLayout>
+
+
+</FrameLayout>
