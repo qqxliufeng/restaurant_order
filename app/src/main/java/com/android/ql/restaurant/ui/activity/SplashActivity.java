@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 
 import com.android.ql.restaurant.R;
 import com.android.ql.restaurant.application.MyApplication;
@@ -34,7 +35,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * @author lf on 18.2.8
  */
 
-public class SplashActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks {
+public class SplashActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks,EasyPermissions.RationaleCallbacks {
 
     /**
      * 权限标识
@@ -44,9 +45,9 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
     /**
      * 需要的权限
      */
-    private static final String[] REQUEST_PERMISSIONS = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION};
+    private static final String[] REQUEST_PERMISSIONS = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-    private static final String[] REQUEST_PERMISSIONS_DESCRIPTION = new String[]{"相机", "读取SD卡","定位"};
+    private static final String[] REQUEST_PERMISSIONS_DESCRIPTION = new String[]{"相机", "读取SD卡"};
 
     @Inject
     GetDataFromNetPresent mPresent;
@@ -79,8 +80,9 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
      * 请求权限
      */
     private void requestPermission() {
-        EasyPermissions.requestPermissions(this, getResources().getString(R.string.app_name)+" 需要您的相机、存储、定位权限 ", WRITE_AND_CAMERA, REQUEST_PERMISSIONS);
+        EasyPermissions.requestPermissions(this, getResources().getString(R.string.app_name)+" 應用程序運行需要您的 相機、存儲 權限，否則運行失敗！", WRITE_AND_CAMERA, REQUEST_PERMISSIONS);
     }
+
 
     /**
      * 检测是否有相应的权限
@@ -132,6 +134,17 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
             requestPermission();
         }
     }
+
+
+    @Override
+    public void onRationaleAccepted(int requestCode) {
+    }
+
+    @Override
+    public void onRationaleDenied(int requestCode) {
+        finish();
+    }
+
 
     /**
      * 设置好权限回调的方法
@@ -190,4 +203,6 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
             startMain();
         }
     }
+
+
 }

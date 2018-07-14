@@ -15,10 +15,10 @@
             android:id="@+id/mRlSelectTicketNum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
             android:paddingLeft="@dimen/dp_10"
-            android:paddingRight="@dimen/dp_10">
+            android:paddingTop="20dp"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingBottom="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -48,10 +48,10 @@
             android:id="@+id/mRlSelectTicketTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
             android:paddingLeft="@dimen/dp_10"
-            android:paddingRight="@dimen/dp_10">
+            android:paddingTop="20dp"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingBottom="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -122,11 +122,13 @@
                 android:textColor="#666" />
 
             <TextView
+                android:id="@+id/mTvSelectNumAndTimeTel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoLink="phone"
                 android:gravity="center"
                 android:padding="@dimen/dp_10"
-                android:text="TEL:00123234234"
+                android:text="TEL:1234567890"
                 android:textColor="#666" />
 
             <TextView

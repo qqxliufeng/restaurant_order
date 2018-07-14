@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -7,6 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionMenuTextAppearance">@style/menu_text_appearance</item>
+    </style>
+
+    <style name="splashTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="my_matisse_style" parent="Matisse.Zhihu">
@@ -61,6 +65,17 @@
         <item name="android:paddingBottom">10dp</item>
         <item name="android:textColor">@color/select_ctv_color1</item>
         <item name="android:textSize">@dimen/sp_14</item>
+    </style>
+
+
+    <style name="CropImageTheme" parent="AppTheme" tools:ingore="NewApi">
+        <item name="cropImageStyle">@style/Widget.CropImageView</item>
+    </style>
+
+    <style name="Widget.CropImageView" parent="android:Widget">
+        <item name="showThirds">false</item>
+        <item name="showCircle">true</item>
+        <item name="showHandles">always</item>
     </style>
 
 </resources>

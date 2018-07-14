@@ -8,24 +8,27 @@ import com.android.ql.restaurant.ui.fragment.bottom.BottomMineFragment
 import com.android.ql.restaurant.ui.fragment.bottom.BottomTicketFragment
 import com.android.ql.restaurant.utils.BottomNavigationViewHelper
 import kotlinx.android.synthetic.main.activity_main_layout.*
+import org.jetbrains.anko.toast
 
 class MainActivity : BaseActivity() {
+
+    private var exitTime: Long = 0L
 
 
     override fun getLayoutId() = R.layout.activity_main_layout
 
     override fun initView() {
         mBvMainView.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.mMenuBottomTicket->{
+            when (it.itemId) {
+                R.id.mMenuBottomTicket -> {
                     mVpMainContainer.currentItem = 0
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.mMenuBottomMine->{
+                R.id.mMenuBottomMine -> {
                     mVpMainContainer.currentItem = 2
                     return@setOnNavigationItemSelectedListener true
                 }
-                else->{
+                else -> {
                     return@setOnNavigationItemSelectedListener false
                 }
             }
@@ -35,15 +38,26 @@ class MainActivity : BaseActivity() {
     }
 
 
-    class MainBottomViewPagerAdapter(fragmentManager: FragmentManager) :FragmentStatePagerAdapter(fragmentManager){
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - exitTime > 2000) {
+            exitTime = System.currentTimeMillis()
+            toast("再按一次退出")
+        }else{
+            finish()
+        }
+    }
+
+
+    class MainBottomViewPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {
 
         override fun getItem(position: Int): Fragment {
-            return if (position == 0){
+            return if (position == 0) {
                 BottomTicketFragment()
-            }else{
+            } else {
                 BottomMineFragment()
             }
         }
+
         override fun getCount() = 2
     }
 

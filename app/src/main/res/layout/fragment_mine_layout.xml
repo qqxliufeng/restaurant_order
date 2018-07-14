@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/mRlPersonalInfoFaceContainer"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:background="@drawable/img_mine_bg"
@@ -24,14 +25,15 @@
             android:id="@+id/mIvMineFace"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/ic_launcher_round" />
+            android:layout_marginTop="100dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/icon_default_face" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/mIvMineFace"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:gravity="center"
             android:text="Mary吳"
             android:textColor="#fff"
@@ -60,7 +62,7 @@
 
         <TextView
             android:id="@+id/mTvMineOrder"
-            android:text="我的預約"
+            android:text="我的取票"
             style="@style/style_tv_1"
             android:drawableLeft="@drawable/icon_order_success"/>
 

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import com.android.ql.restaurant.R
 import com.android.ql.restaurant.ui.activity.FragmentContainerActivity
 import com.android.ql.restaurant.ui.fragment.base.BaseFragment
+import com.android.ql.restaurant.ui.fragment.mine.LoginFragment
 import com.android.ql.restaurant.ui.fragment.mine.MineContactFragment
 import com.android.ql.restaurant.ui.fragment.mine.MineOrderListFragment
 import com.android.ql.restaurant.ui.fragment.mine.MinePersonalInfoFragment
@@ -17,12 +18,16 @@ class BottomMineFragment : BaseFragment() {
     override fun initView(view: View?) {
         (mTvMineTitle.layoutParams as ViewGroup.MarginLayoutParams).topMargin = statusBarHeight
 
+        mRlPersonalInfoFaceContainer.setOnClickListener{
+            LoginFragment.startLogin(mContext)
+        }
+
         mTvMinePersonalInfo.setOnClickListener {
             FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("個人信息").setClazz(MinePersonalInfoFragment::class.java).start()
         }
 
         mTvMineOrder.setOnClickListener {
-            FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("我的預約").setClazz(MineOrderListFragment::class.java).start()
+            FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("我的取票").setClazz(MineOrderListFragment::class.java).start()
         }
 
         mTvMineCallRes.setOnClickListener {

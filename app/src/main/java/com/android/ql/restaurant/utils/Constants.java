@@ -10,13 +10,9 @@ public class Constants {
     public static final String BASE_IP = "http://zhongwei.581vv.com/";
 
     public static final String BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
-    public static final String APP_PATH = BASE_PATH + "/zwlogistics/";
+    public static final String APP_PATH = BASE_PATH + "/restaurant/";
     public static final String IMAGE_PATH = APP_PATH + "/img/";
-    public static final String FILE_PROVIDE_PATH = "com.android.ql.lf.zwlogistics.fileProvider";
-
-    public static final String TENCENT_ID = "1106952325";
-    public static final String WX_APP_ID = "wxf470a963560eab15";
-
+    public static final String FILE_PROVIDE_PATH = "com.android.ql.restaurant.fileProvider";
 
     private static final String APP_TOKEN = "d5a131f90e76db03df4eff4154e56dbe";
     public static final long MAX_COUNT_DOWN = 1000 * 10;

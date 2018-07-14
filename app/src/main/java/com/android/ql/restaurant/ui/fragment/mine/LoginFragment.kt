@@ -1,5 +1,6 @@
 package com.android.ql.restaurant.ui.fragment.mine
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.view.View
@@ -9,6 +10,12 @@ import com.android.ql.restaurant.ui.fragment.base.BaseNetWorkingFragment
 import kotlinx.android.synthetic.main.fragment_login_layout.*
 
 class LoginFragment : BaseNetWorkingFragment() {
+
+    companion object {
+        fun startLogin(context: Context){
+            FragmentContainerActivity.from(context).setClazz(LoginFragment::class.java).setTitle("登录").setNeedNetWorking(true).start()
+        }
+    }
 
     override fun getLayoutId() = R.layout.fragment_login_layout
 
@@ -20,10 +27,10 @@ class LoginFragment : BaseNetWorkingFragment() {
         toolbar.navigationIcon!!.setColorFilter(Color.parseColor("#000000"), PorterDuff.Mode.SRC_ATOP)
 
         mTvLoginForgetPassword.setOnClickListener {
-            FragmentContainerActivity.from(mContext).setClazz(ForgetPasswordFragment::class.java).setTitle("註冊").setNeedNetWorking(true).start()
+            FragmentContainerActivity.from(mContext).setClazz(ForgetPasswordFragment::class.java).setTitle("忘記密碼").setNeedNetWorking(true).start()
         }
         mTvLoginRegister.setOnClickListener {
-            FragmentContainerActivity.from(mContext).setClazz(RegisterFragment::class.java).setTitle("忘記密碼").setNeedNetWorking(true).start()
+            FragmentContainerActivity.from(mContext).setClazz(RegisterFragment::class.java).setTitle("註冊").setNeedNetWorking(true).start()
         }
     }
 }

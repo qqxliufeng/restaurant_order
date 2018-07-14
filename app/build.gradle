@@ -11,15 +11,33 @@ android {
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         multiDexEnabled true
     }
+    signingConfigs{
+        release{
+            keyAlias 'ql'
+            keyPassword 'restaurant'
+            storeFile file('restaurant.jks')
+            storePassword 'restaurant'
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug{
+            signingConfig signingConfigs.release
+        }
     }
+
+    dexOptions{
+        javaMaxHeapSize "4g"
+    }
+
 }
 
 dependencies {
@@ -48,5 +66,6 @@ dependencies {
     implementation rootProject.ext.dependencies["libCardview"]
     implementation rootProject.ext.dependencies["libFlexBox"]
     implementation rootProject.ext.dependencies["libMultiDex"]
+    implementation 'com.soundcloud.android:android-crop:1.0.1@aar'
 
 }

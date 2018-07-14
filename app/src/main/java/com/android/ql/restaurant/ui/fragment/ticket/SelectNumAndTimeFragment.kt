@@ -6,6 +6,7 @@ import android.view.View
 import com.android.ql.restaurant.R
 import com.android.ql.restaurant.ui.activity.FragmentContainerActivity
 import com.android.ql.restaurant.ui.fragment.base.BaseNetWorkingFragment
+import com.android.ql.restaurant.utils.startPhone
 import kotlinx.android.synthetic.main.fragment_select_num_and_time_layout.*
 import org.jetbrains.anko.support.v4.toast
 import java.util.*
@@ -53,15 +54,19 @@ class SelectNumAndTimeFragment :BaseNetWorkingFragment(){
         }
 
         mBtSelectTableNext.setOnClickListener {
-            if (date == null || time == null){
-                toast("請先選擇預計時間")
-                return@setOnClickListener
-            }
             if (num == null){
                 toast("請先選擇預計人數")
                 return@setOnClickListener
             }
+            if (date == null || time == null){
+                toast("請先選擇預計時間")
+                return@setOnClickListener
+            }
             FragmentContainerActivity.from(mContext).setClazz(SelectTicketResultFragment::class.java).setTitle("餐廳取票").setNeedNetWorking(false).start()
+        }
+
+        mTvSelectNumAndTimeTel.setOnClickListener {
+            startPhone(mTvSelectNumAndTimeTel.text.toString())
         }
     }
 }

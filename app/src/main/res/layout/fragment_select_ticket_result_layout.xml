@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/logo" />
+                android:src="@drawable/logo_trans" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -73,40 +73,39 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/deepTextColor"
+                    android:layout_gravity="center"
                     android:text="你的號碼"
-                    android:textSize="@dimen/sp_14"
-                    android:layout_gravity="center"/>
+                    android:textColor="@color/deepTextColor"
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
                     android:text="A10"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/normalTextColor"
-                    android:textSize="@dimen/sp_14"
+                    android:layout_gravity="center"
                     android:text="前方還有5桌"
-                    android:layout_gravity="center"/>
+                    android:textColor="@color/normalTextColor"
+                    android:textSize="@dimen/sp_14" />
 
             </LinearLayout>
 
             <TextView
-                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -114,7 +113,8 @@
                 android:drawablePadding="@dimen/dp_10"
                 android:text="無需輪候，請直接入痤"
                 android:textColor="@color/deepTextColor"
-                android:textSize="@dimen/sp_14" />
+                android:textSize="@dimen/sp_14"
+                android:visibility="gone" />
 
         </FrameLayout>
 
@@ -154,7 +154,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_bt_3"
                 android:gravity="center"
-                android:text="取消預約"
+                android:text="取消排隊"
                 android:textColor="@color/deepTextColor" />
 
             <TextView

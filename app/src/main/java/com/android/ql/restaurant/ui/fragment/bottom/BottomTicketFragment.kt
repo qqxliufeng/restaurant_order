@@ -4,8 +4,10 @@ import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import com.android.ql.restaurant.R
+import com.android.ql.restaurant.data.UserInfo
 import com.android.ql.restaurant.ui.activity.FragmentContainerActivity
 import com.android.ql.restaurant.ui.fragment.base.BaseRecyclerViewFragment
+import com.android.ql.restaurant.ui.fragment.mine.LoginFragment
 import com.android.ql.restaurant.ui.fragment.ticket.SelectTableFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
