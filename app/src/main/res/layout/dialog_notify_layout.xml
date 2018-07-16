@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_ll_3"
+    android:minHeight="250dp"
+    android:minWidth="450dp"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/logo_trans" />
+
+    <TextView
+        android:id="@+id/mTvNotifyDialogNum"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="您的號碼A10"
+        android:textColor="@color/deepTextColor" />
+
+    <TextView
+        android:id="@+id/mTvNotifyDialogFont"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="前方還有3桌"
+        android:textColor="@color/deepTextColor" />
+
+    <Button
+        android:id="@+id/mBtNotifyDialogSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/shape_bt_2"
+        android:text="確定"
+        android:layout_margin="30dp"
+        android:textColor="#fff" />
+
+</LinearLayout>
