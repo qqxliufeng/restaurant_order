@@ -15,7 +15,7 @@
         android:drawableTop="@drawable/logo_trans"
         android:drawablePadding="20dp"
         android:gravity="center"
-        android:text="歡迎預定\n泰廚泰國菜館"
+        android:text="@string/login_welcome_logo"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/sp_16"
         android:textStyle="bold" />
