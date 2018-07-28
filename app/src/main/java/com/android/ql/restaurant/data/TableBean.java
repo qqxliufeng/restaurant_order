@@ -2,24 +2,70 @@ package com.android.ql.restaurant.data;
 
 public class TableBean {
 
-    private String tableNum;
-    private String fontNum;
     private boolean isSelected;
 
-    public String getTableNum() {
-        return tableNum;
+    private String table_id;
+    private String table_shop;
+    private String table_name;
+    private String table_intro;
+    private String table_count;
+    private String table_max;
+    private String table_min;
+
+    public String getTable_id() {
+        return table_id;
     }
 
-    public void setTableNum(String tableNum) {
-        this.tableNum = tableNum;
+    public void setTable_id(String table_id) {
+        this.table_id = table_id;
     }
 
-    public String getFontNum() {
-        return fontNum;
+    public String getTable_shop() {
+        return table_shop;
     }
 
-    public void setFontNum(String fontNum) {
-        this.fontNum = fontNum;
+    public void setTable_shop(String table_shop) {
+        this.table_shop = table_shop;
+    }
+
+    public String getTable_name() {
+        return table_name;
+    }
+
+    public void setTable_name(String table_name) {
+        this.table_name = table_name;
+    }
+
+    public String getTable_intro() {
+        return table_intro;
+    }
+
+    public void setTable_intro(String table_intro) {
+        this.table_intro = table_intro;
+    }
+
+    public String getTable_count() {
+        return table_count;
+    }
+
+    public void setTable_count(String table_count) {
+        this.table_count = table_count;
+    }
+
+    public String getTable_max() {
+        return table_max;
+    }
+
+    public void setTable_max(String table_max) {
+        this.table_max = table_max;
+    }
+
+    public String getTable_min() {
+        return table_min;
+    }
+
+    public void setTable_min(String table_min) {
+        this.table_min = table_min;
     }
 
     public boolean isSelected() {

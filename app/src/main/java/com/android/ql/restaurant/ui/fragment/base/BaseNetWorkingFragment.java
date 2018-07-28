@@ -13,6 +13,7 @@ import com.android.ql.restaurant.ui.activity.FragmentContainerActivity;
 import com.android.ql.restaurant.utils.RxBus;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Objects;
@@ -134,24 +135,22 @@ public abstract class BaseNetWorkingFragment extends BaseFragment implements INe
             BaseNetResult check = checkResultCode(result);
             if (check != null) {
                 if (check.code.equals(SUCCESS_CODE)) {
-                    if (check.obj instanceof JSONObject) {
-                        onHandleSuccess(requestID, ((JSONObject) check.obj).optJSONObject(RESULT_OBJECT));
-                    } else {
-                        onHandleSuccess(requestID, check.obj);
-                    }
+                    onHandleSuccess(requestID, check.obj);
                 } else {
-                    onRequestFail(requestID, new NullPointerException());
+                    if (check.obj instanceof JSONObject) {
+                        onRequestFail(requestID, new NullPointerException(((JSONObject) check.obj).optString("codeError")));
+                    } else {
+                        onRequestFail(requestID, new NullPointerException("請求失敗~"));
+                    }
                 }
             } else {
-                onRequestFail(requestID, new NullPointerException());
+                onRequestFail(requestID, new NullPointerException("請求失敗~"));
             }
         } catch (Exception e) {
             onRequestFail(requestID, e);
         }
     }
 
-    public void onHandleSuccess(int requestID, JSONObject jsonObject) {
-    }
 
     public void onHandleSuccess(int requestID, Object obj) {
     }

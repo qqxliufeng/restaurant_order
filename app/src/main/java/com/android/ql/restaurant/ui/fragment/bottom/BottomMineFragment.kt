@@ -1,40 +1,65 @@
 package com.android.ql.restaurant.ui.fragment.bottom
 
-import android.app.Dialog
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import com.android.ql.restaurant.R
+import com.android.ql.restaurant.data.UserInfo
 import com.android.ql.restaurant.ui.activity.FragmentContainerActivity
-import com.android.ql.restaurant.ui.fragment.base.BaseFragment
+import com.android.ql.restaurant.ui.fragment.base.BaseNetWorkingFragment
 import com.android.ql.restaurant.ui.fragment.mine.LoginFragment
 import com.android.ql.restaurant.ui.fragment.mine.MineContactFragment
 import com.android.ql.restaurant.ui.fragment.mine.MineOrderListFragment
 import com.android.ql.restaurant.ui.fragment.mine.MinePersonalInfoFragment
-import com.android.ql.restaurant.utils.setDiffColorText
+import com.android.ql.restaurant.utils.GlideManager
+import com.android.ql.restaurant.utils.RxBus
+import com.android.ql.restaurant.utils.doClickWithUseStatusEnd
+import com.android.ql.restaurant.utils.doClickWithUserStatusStart
 import kotlinx.android.synthetic.main.fragment_mine_layout.*
 
-class BottomMineFragment : BaseFragment() {
+class BottomMineFragment : BaseNetWorkingFragment() {
 
-    private val notifyDialog by lazy {
-        Dialog(mContext)
+//    private val notifyDialog by lazy {
+//        Dialog(mContext)
+//    }
+
+    companion object {
+        const val MINE_USER_INFO_FLAG = "mine_user_info_flag"
+        const val MINE_TICKET_FLAG = "mine_ticket_flag"
     }
 
     override fun getLayoutId() = R.layout.fragment_mine_layout
 
+    private val modifyInfoSubscription by lazy {
+        RxBus.getDefault().toObservable(String::class.java).subscribe {
+            if (it == "modify info success") {
+                GlideManager.loadFaceCircleImage(mContext,UserInfo.getInstance().user_pic,mIvMineFace)
+                mTvMineNickName.text = UserInfo.getInstance().user_nickname
+            }
+        }
+    }
+
     override fun initView(view: View?) {
+        registerLoginSuccessBus()
+        modifyInfoSubscription
         (mTvMineTitle.layoutParams as ViewGroup.MarginLayoutParams).topMargin = statusBarHeight
 
-        mRlPersonalInfoFaceContainer.setOnClickListener{
-            LoginFragment.startLogin(mContext)
+        mRlPersonalInfoFaceContainer.doClickWithUserStatusStart(MINE_USER_INFO_FLAG) {
+            if (UserInfo.getInstance().isLogin) {
+                FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("個人信息").setClazz(MinePersonalInfoFragment::class.java).start()
+            } else {
+                LoginFragment.startLogin(mContext)
+            }
         }
 
-        mTvMinePersonalInfo.setOnClickListener {
-            FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("個人信息").setClazz(MinePersonalInfoFragment::class.java).start()
+        mTvMinePersonalInfo.doClickWithUserStatusStart(MINE_USER_INFO_FLAG) {
+            if (UserInfo.getInstance().isLogin) {
+                FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("個人信息").setClazz(MinePersonalInfoFragment::class.java).start()
+            } else {
+                LoginFragment.startLogin(mContext)
+            }
         }
 
-        mTvMineOrder.setOnClickListener {
+        mTvMineOrder.doClickWithUserStatusStart(MINE_TICKET_FLAG) {
             FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("我的取票").setClazz(MineOrderListFragment::class.java).start()
         }
 
@@ -42,13 +67,34 @@ class BottomMineFragment : BaseFragment() {
             FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("聯繫方式").setClazz(MineContactFragment::class.java).start()
         }
 
-        val contentView = View.inflate(mContext,R.layout.dialog_notify_layout,null)
-        val tv_num = contentView.findViewById<TextView>(R.id.mTvNotifyDialogNum)
-        tv_num.setDiffColorText("您的號碼","A10",color2 = "#880015")
-        contentView.findViewById<Button>(R.id.mBtNotifyDialogSubmit).setOnClickListener {
-            notifyDialog.dismiss()
+//        val contentView = View.inflate(mContext,R.layout.dialog_notify_layout,null)
+//        val tv_num = contentView.findViewById<TextView>(R.id.mTvNotifyDialogNum)
+//        tv_num.setDiffColorText("您的號碼","A10",color2 = "#880015")
+//        contentView.findViewById<Button>(R.id.mBtNotifyDialogSubmit).setOnClickListener {
+//            notifyDialog.dismiss()
+//        }
+//        notifyDialog.setContentView(contentView)
+//        notifyDialog.show()
+    }
+
+
+    override fun onLoginSuccess(userInfo: UserInfo?) {
+        super.onLoginSuccess(userInfo)
+        if (UserInfo.getInstance().isLogin){
+            GlideManager.loadFaceCircleImage(mContext,UserInfo.getInstance().user_pic,mIvMineFace)
+            mTvMineNickName.text = UserInfo.getInstance().user_nickname
+            when(UserInfo.loginToken){
+                MINE_USER_INFO_FLAG->{
+                    mTvMinePersonalInfo.doClickWithUseStatusEnd()
+                }
+                MINE_TICKET_FLAG->{
+                }
+            }
         }
-        notifyDialog.setContentView(contentView)
-        notifyDialog.show()
+    }
+
+    override fun onDestroyView() {
+        unsubscribe(modifyInfoSubscription)
+        super.onDestroyView()
     }
 }

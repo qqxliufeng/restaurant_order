@@ -7,7 +7,7 @@ import android.os.Environment;
  */
 
 public class Constants {
-    public static final String BASE_IP = "http://zhongwei.581vv.com/";
+    public static final String BASE_IP = "http://canting.581vv.com/";
 
     public static final String BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
     public static final String APP_PATH = BASE_PATH + "/restaurant/";
@@ -15,7 +15,6 @@ public class Constants {
     public static final String FILE_PROVIDE_PATH = "com.android.ql.restaurant.fileProvider";
 
     private static final String APP_TOKEN = "d5a131f90e76db03df4eff4154e56dbe";
-    public static final long MAX_COUNT_DOWN = 1000 * 10;
 
     public static String md5Token() {
         return APP_TOKEN;

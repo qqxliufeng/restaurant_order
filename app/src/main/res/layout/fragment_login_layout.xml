@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#fff">
 
     <ImageView
@@ -33,11 +33,12 @@
             android:layout_marginTop="20dp">
 
             <com.android.ql.restaurant.ui.widget.DJEditText
+                android:id="@+id/mEtLoginPhone"
                 style="@style/style_et_1"
                 android:hint="請輸入手機號"
                 android:inputType="phone"
-                android:paddingRight="15dp"
-                android:maxLength="11" />
+                android:maxLength="8"
+                android:paddingRight="15dp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -46,9 +47,11 @@
             app:passwordToggleEnabled="true">
 
             <android.support.design.widget.TextInputEditText
-                android:inputType="textPassword"
+                android:id="@+id/mEtLoginPassword"
                 style="@style/style_et_1"
-                android:hint="請輸入密碼" />
+                android:hint="請輸入密碼(6~16位)"
+                android:inputType="textPassword"
+                android:maxLength="16" />
         </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
@@ -64,9 +67,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="忘記密碼"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
+                android:text="忘記密碼"
                 android:textColor="@color/textRedColor"
                 android:textSize="@dimen/sp_14" />
 
@@ -92,6 +95,7 @@
 
 
         <Button
+            android:id="@+id/mBtLogin"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40"
             android:layout_marginLeft="30dp"

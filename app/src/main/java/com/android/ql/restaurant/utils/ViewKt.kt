@@ -18,7 +18,7 @@ import java.util.regex.Pattern
  * @author lf on 18.2.10
  */
 
-val PHONE_REG = "^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\\d{8}\$"
+val PHONE_REG = "^(5|6|8|9)\\d{7}\$"
 val IDCARD_REG = "^(\\d{6})(\\d{4})(\\d{2})(\\d{2})(\\d{3})([0-9]|X)\$"
 
 /**

@@ -24,12 +24,7 @@ public class ViewUserAction implements IViewUserAction {
             UserInfo.getInstance().setUser_nickname(result.optString("user_nickname"));
             UserInfo.getInstance().setUser_phone(result.optString("user_phone"));
             UserInfo.getInstance().setUser_pic(result.optString("user_pic"));
-            UserInfo.getInstance().setUser_code(result.optString("user_code"));
-            UserInfo.getInstance().setUser_is_rank(result.optString("user_is_rank"));
-            UserInfo.getInstance().setUser_is_vehicle(result.optString("user_is_vehicle"));
-            UserInfo.getInstance().setUser_w_sum(result.optString("user_w_sum"));
-            UserInfo.getInstance().setUser_y_sum(result.optString("user_y_sum"));
-            UserInfo.getInstance().setKephone(result.optString("kephone"));
+            UserInfo.getInstance().setUser_rank(result.optString("user_rank"));
 
             PreferenceUtils.setPrefString(MyApplication.application, UserInfo.USER_ID_FLAG, UserInfo.getInstance().getUser_id());
             return true;

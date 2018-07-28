@@ -1,6 +1,7 @@
 package com.android.ql.restaurant.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.android.ql.lf.carapp.data.ImageBean;
@@ -21,16 +22,16 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 public class GlideManager {
 
     public static void loadImage(Context context, String path, ImageView imageView) {
-        Glide.with(context).load(Constants.BASE_IP + path)
+        Glide.with(context).load(getImageUrl(path))
                 .error(R.drawable.img_glide_load_default)
                 .placeholder(R.drawable.img_glide_load_default)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
     }
 
-    public static void loadRoundImage(Context context, String path, ImageView imageView,int rounded) {
+    public static void loadRoundImage(Context context, String path, ImageView imageView, int rounded) {
         Glide.with(context)
-                .load(Constants.BASE_IP + path)
+                .load(getImageUrl(path))
                 .error(R.drawable.img_glide_load_default)
                 .placeholder(R.drawable.img_glide_load_default)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -50,19 +51,12 @@ public class GlideManager {
     }
 
 
-
     public static void loadFaceCircleImage(Context context, String path, ImageView imageView) {
-        String tempPath;
         if (path != null) {
-            if (path.startsWith("http://") || path.startsWith("http://")) {
-                tempPath = path;
-            } else {
-                tempPath = Constants.BASE_IP + path;
-            }
             Glide.with(context)
-                    .load(tempPath)
-                    .error(R.drawable.img_glide_load_default)
-                    .placeholder(R.drawable.img_glide_load_default)
+                    .load(getImageUrl(path))
+                    .error(R.drawable.icon_default_face)
+                    .placeholder(R.drawable.icon_default_face)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .bitmapTransform(new CropCircleTransformation(context), new CenterCrop(context))
                     .into(imageView);
@@ -79,5 +73,17 @@ public class GlideManager {
                 .into(imageView);
     }
 
-
+    private static String getImageUrl(String url) {
+        if (TextUtils.isEmpty(url)) {
+            return "";
+        }
+        if (TextUtils.isDigitsOnly(url)) {
+            return Constants.BASE_IP + "api/echopic?id=" + url;
+        }
+        if (url.startsWith("http://") || url.startsWith("http://")) {
+            return url;
+        } else {
+            return Constants.BASE_IP + url;
+        }
+    }
 }

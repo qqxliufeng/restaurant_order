@@ -25,17 +25,18 @@
             android:id="@+id/mIvMineFace"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="100dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
             android:src="@drawable/icon_default_face" />
 
         <TextView
+            android:id="@+id/mTvMineNickName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/mIvMineFace"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:text="Mary吳"
+            android:text="登錄/註冊"
             android:textColor="#fff"
             android:textSize="18sp" />
 
@@ -50,8 +51,8 @@
 
         <TextView
             android:id="@+id/mTvMinePersonalInfo"
-            android:text="個人信息"
-            style="@style/style_tv_1" />
+            style="@style/style_tv_1"
+            android:text="個人信息" />
 
         <View
             android:layout_width="match_parent"
@@ -62,9 +63,9 @@
 
         <TextView
             android:id="@+id/mTvMineOrder"
-            android:text="我的取票"
             style="@style/style_tv_1"
-            android:drawableLeft="@drawable/icon_order_success"/>
+            android:drawableLeft="@drawable/icon_order_success"
+            android:text="我的取票" />
 
         <View
             android:layout_width="match_parent"
@@ -75,9 +76,9 @@
 
         <TextView
             android:id="@+id/mTvMineCallRes"
-            android:text="聯繫餐廳"
             style="@style/style_tv_1"
-            android:drawableLeft="@drawable/icon_phone"/>
+            android:drawableLeft="@drawable/icon_phone"
+            android:text="聯繫餐廳" />
 
     </LinearLayout>
 

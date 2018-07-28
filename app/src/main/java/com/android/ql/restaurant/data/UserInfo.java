@@ -45,14 +45,9 @@ public class UserInfo {
     private String user_id;
     private String user_phone;
     private String user_pass;
-    private String user_code;
     private String user_nickname;
     private String user_pic;
-    private String user_y_sum;
-    private String user_w_sum;
-    private String user_is_rank;
-    private String user_is_vehicle;
-    private String kephone;
+    private String user_rank;
 
     public String getUser_id() {
         return user_id;
@@ -78,14 +73,6 @@ public class UserInfo {
         this.user_pass = user_pass;
     }
 
-    public String getUser_code() {
-        return user_code;
-    }
-
-    public void setUser_code(String user_code) {
-        this.user_code = user_code;
-    }
-
     public String getUser_nickname() {
         return user_nickname;
     }
@@ -102,44 +89,12 @@ public class UserInfo {
         this.user_pic = user_pic;
     }
 
-    public String getUser_y_sum() {
-        return user_y_sum;
+    public String getUser_rank() {
+        return user_rank;
     }
 
-    public void setUser_y_sum(String user_y_sum) {
-        this.user_y_sum = user_y_sum;
-    }
-
-    public String getUser_w_sum() {
-        return user_w_sum;
-    }
-
-    public void setUser_w_sum(String user_w_sum) {
-        this.user_w_sum = user_w_sum;
-    }
-
-    public String getUser_is_rank() {
-        return user_is_rank;
-    }
-
-    public void setUser_is_rank(String user_is_rank) {
-        this.user_is_rank = user_is_rank;
-    }
-
-    public String getUser_is_vehicle() {
-        return user_is_vehicle;
-    }
-
-    public void setUser_is_vehicle(String user_is_vehicle) {
-        this.user_is_vehicle = user_is_vehicle;
-    }
-
-    public String getKephone() {
-        return kephone;
-    }
-
-    public void setKephone(String kephone) {
-        this.kephone = kephone;
+    public void setUser_rank(String user_rank) {
+        this.user_rank = user_rank;
     }
 
     public boolean isLogin() {
