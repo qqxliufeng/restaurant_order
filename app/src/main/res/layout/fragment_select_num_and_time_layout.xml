@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
 
@@ -128,15 +129,16 @@
                 android:autoLink="phone"
                 android:gravity="center"
                 android:padding="@dimen/dp_10"
-                android:text="TEL:1234567890"
+                tools:text="TEL:1234567890"
                 android:textColor="#666" />
 
             <TextView
+                android:id="@+id/mTvSelectNumAndTimeAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="@dimen/dp_10"
-                android:text="地址：香港九龍旺角通菜街132號"
+                tools:text="地址：香港九龍旺角通菜街132號"
                 android:textColor="#666" />
 
             <View

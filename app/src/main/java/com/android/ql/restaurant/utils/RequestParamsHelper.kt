@@ -92,6 +92,11 @@ class RequestParamsHelper {
 
         fun getTableListParam(shopid: String) = getWithIdParams().addParam(ApiParams.MOD_NAME, SHOP_MODEL).addParam(ApiParams.ACT_NAME, "table").addParam("shop_id", shopid)
 
+        fun getTicketParam(shopId: String, number: String, times: String) = getWithIdParams()
+                .addParam(ApiParams.MOD_NAME, SHOP_MODEL)
+                .addParam(ApiParams.ACT_NAME, "ticket")
+                .addParam("number", number)
+                .addParam("times", times)
 
         /**              member model  start           **/
 

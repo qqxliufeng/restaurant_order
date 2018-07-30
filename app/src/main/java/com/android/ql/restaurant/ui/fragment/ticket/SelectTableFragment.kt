@@ -39,8 +39,6 @@ class SelectTableFragment : BaseRecyclerViewFragment<TableBean>() {
         }
     }
 
-    private var currentItem: TableBean? = null
-
     override fun createAdapter() = object : BaseQuickAdapter<TableBean, BaseViewHolder>(R.layout.adapter_select_table_item_layout, mArrayList) {
         override fun convert(helper: BaseViewHolder?, item: TableBean?) {
             val tv_name = helper!!.getView<TextView>(R.id.mTvSelectTableItemName)
@@ -58,18 +56,18 @@ class SelectTableFragment : BaseRecyclerViewFragment<TableBean>() {
 
     override fun onRefresh() {
         super.onRefresh()
-        mPresent.getDataByPost(0x0,RequestParamsHelper.getTableListParam(shopId))
+        mPresent.getDataByPost(0x0, RequestParamsHelper.getTableListParam(shopId))
     }
 
     override fun <T : Any?> onRequestSuccess(requestID: Int, result: T) {
         super.onRequestSuccess(requestID, result)
-        processList(result as String,TableBean::class.java)
+        processList(result as String, TableBean::class.java)
         val jsonObject = JSONObject(result)
         val shopJson = jsonObject.optJSONObject("shop")
-        if (shopJson!=null){
+        if (shopJson != null) {
             val footView = View.inflate(mContext, R.layout.layout_select_table_foot_view, null)
             footView.findViewById<Button>(R.id.mBtSelectTableNext).setOnClickListener {
-                FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("餐廳取票").setClazz(SelectNumAndTimeFragment::class.java).start()
+                SelectNumAndTimeFragment.startSelectNumAndTime(mContext, shopJson.optString("shop_phone"), shopJson.optString("shop_dizhi"), mArrayList[0].table_shop)
             }
             val tv_phone = footView.findViewById<TextView>(R.id.mTvBottomFootTel)
             val tv_address = footView.findViewById<TextView>(R.id.mTvBottomFootAddress)
@@ -88,12 +86,4 @@ class SelectTableFragment : BaseRecyclerViewFragment<TableBean>() {
         itemDecoration.setDrawable(ColorDrawable())
         return itemDecoration
     }
-
-    override fun onMyItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-        super.onMyItemClick(adapter, view, position)
-//        currentItem = mArrayList[position]
-//        mArrayList.forEach { it.isSelected = it == currentItem }
-//        mBaseAdapter.notifyDataSetChanged()
-    }
-
 }
