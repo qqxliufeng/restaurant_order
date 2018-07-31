@@ -4,17 +4,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.android.ql.restaurant.R
 import com.android.ql.restaurant.data.UserInfo
+import com.android.ql.restaurant.present.UserPresent
 import com.android.ql.restaurant.ui.activity.FragmentContainerActivity
 import com.android.ql.restaurant.ui.fragment.base.BaseNetWorkingFragment
 import com.android.ql.restaurant.ui.fragment.mine.LoginFragment
 import com.android.ql.restaurant.ui.fragment.mine.MineContactFragment
 import com.android.ql.restaurant.ui.fragment.mine.MineOrderListFragment
 import com.android.ql.restaurant.ui.fragment.mine.MinePersonalInfoFragment
-import com.android.ql.restaurant.utils.GlideManager
-import com.android.ql.restaurant.utils.RxBus
-import com.android.ql.restaurant.utils.doClickWithUseStatusEnd
-import com.android.ql.restaurant.utils.doClickWithUserStatusStart
+import com.android.ql.restaurant.utils.*
 import kotlinx.android.synthetic.main.fragment_mine_layout.*
+import org.json.JSONObject
 
 class BottomMineFragment : BaseNetWorkingFragment() {
 
@@ -25,6 +24,12 @@ class BottomMineFragment : BaseNetWorkingFragment() {
     companion object {
         const val MINE_USER_INFO_FLAG = "mine_user_info_flag"
         const val MINE_TICKET_FLAG = "mine_ticket_flag"
+        const val MINE_CONTACT_FLAG = "mine_contact_flag"
+    }
+
+
+    private val userPresent by lazy {
+        UserPresent()
     }
 
     override fun getLayoutId() = R.layout.fragment_mine_layout
@@ -32,7 +37,7 @@ class BottomMineFragment : BaseNetWorkingFragment() {
     private val modifyInfoSubscription by lazy {
         RxBus.getDefault().toObservable(String::class.java).subscribe {
             if (it == "modify info success") {
-                GlideManager.loadFaceCircleImage(mContext,UserInfo.getInstance().user_pic,mIvMineFace)
+                GlideManager.loadFaceCircleImage(mContext, UserInfo.getInstance().user_pic, mIvMineFace)
                 mTvMineNickName.text = UserInfo.getInstance().user_nickname
             }
         }
@@ -42,6 +47,19 @@ class BottomMineFragment : BaseNetWorkingFragment() {
         registerLoginSuccessBus()
         modifyInfoSubscription
         (mTvMineTitle.layoutParams as ViewGroup.MarginLayoutParams).topMargin = statusBarHeight
+
+        if (UserInfo.getInstance().isLogin) {
+            GlideManager.loadFaceCircleImage(mContext, UserInfo.getInstance().user_pic, mIvMineFace)
+            mTvMineNickName.text = UserInfo.getInstance().user_nickname
+        }
+
+        mSrfMine.setOnRefreshListener {
+            if (UserInfo.isCacheUserId(mContext)) {
+                mPresent.getDataByPost(0x0, RequestParamsHelper.getPersonalParam(UserInfo.getUserIdFromCache(mContext)))
+            } else {
+                mSrfMine.post { mSrfMine.isRefreshing = false }
+            }
+        }
 
         mRlPersonalInfoFaceContainer.doClickWithUserStatusStart(MINE_USER_INFO_FLAG) {
             if (UserInfo.getInstance().isLogin) {
@@ -60,11 +78,19 @@ class BottomMineFragment : BaseNetWorkingFragment() {
         }
 
         mTvMineOrder.doClickWithUserStatusStart(MINE_TICKET_FLAG) {
-            FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("我的取票").setClazz(MineOrderListFragment::class.java).start()
+            if (UserInfo.getInstance().isLogin) {
+                FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("我的取票").setClazz(MineOrderListFragment::class.java).start()
+            } else {
+                LoginFragment.startLogin(mContext)
+            }
         }
 
-        mTvMineCallRes.setOnClickListener {
-            FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("聯繫方式").setClazz(MineContactFragment::class.java).start()
+        mTvMineCallRes.doClickWithUserStatusStart(MINE_CONTACT_FLAG) {
+            if (UserInfo.getInstance().isLogin) {
+                FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("聯繫方式").setClazz(MineContactFragment::class.java).start()
+            } else {
+                LoginFragment.startLogin(mContext)
+            }
         }
 
 //        val contentView = View.inflate(mContext,R.layout.dialog_notify_layout,null)
@@ -78,16 +104,42 @@ class BottomMineFragment : BaseNetWorkingFragment() {
     }
 
 
+    override fun onRequestEnd(requestID: Int) {
+        super.onRequestEnd(requestID)
+        mSrfMine.post {
+            mSrfMine.isRefreshing = false
+        }
+    }
+
+    override fun <T : Any?> onRequestSuccess(requestID: Int, result: T) {
+        super.onRequestSuccess(requestID, result)
+        onHandleSuccess(requestID, result)
+    }
+
+    override fun onHandleSuccess(requestID: Int, obj: Any?) {
+        super.onHandleSuccess(requestID, obj)
+        if (obj != null) {
+            userPresent.onLoginNoBus(obj as JSONObject)
+            GlideManager.loadFaceCircleImage(mContext, UserInfo.getInstance().user_pic, mIvMineFace)
+            mTvMineNickName.text = UserInfo.getInstance().user_nickname
+        }
+    }
+
+
     override fun onLoginSuccess(userInfo: UserInfo?) {
         super.onLoginSuccess(userInfo)
-        if (UserInfo.getInstance().isLogin){
-            GlideManager.loadFaceCircleImage(mContext,UserInfo.getInstance().user_pic,mIvMineFace)
+        if (UserInfo.getInstance().isLogin) {
+            GlideManager.loadFaceCircleImage(mContext, UserInfo.getInstance().user_pic, mIvMineFace)
             mTvMineNickName.text = UserInfo.getInstance().user_nickname
-            when(UserInfo.loginToken){
-                MINE_USER_INFO_FLAG->{
+            when (UserInfo.loginToken) {
+                MINE_USER_INFO_FLAG -> {
                     mTvMinePersonalInfo.doClickWithUseStatusEnd()
                 }
-                MINE_TICKET_FLAG->{
+                MINE_TICKET_FLAG -> {
+                    mTvMineOrder.doClickWithUseStatusEnd()
+                }
+                MINE_CONTACT_FLAG -> {
+                    mTvMineCallRes.doClickWithUseStatusEnd()
                 }
             }
         }

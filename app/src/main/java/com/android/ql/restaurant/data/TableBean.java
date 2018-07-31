@@ -4,27 +4,27 @@ public class TableBean {
 
     private boolean isSelected;
 
-    private String table_id;
-    private String table_shop;
+    private long table_id;
+    private long table_shop;
     private String table_name;
     private String table_intro;
     private String table_count;
     private String table_max;
     private String table_min;
 
-    public String getTable_id() {
+    public long getTable_id() {
         return table_id;
     }
 
-    public void setTable_id(String table_id) {
+    public void setTable_id(long table_id) {
         this.table_id = table_id;
     }
 
-    public String getTable_shop() {
+    public long getTable_shop() {
         return table_shop;
     }
 
-    public void setTable_shop(String table_shop) {
+    public void setTable_shop(long table_shop) {
         this.table_shop = table_shop;
     }
 

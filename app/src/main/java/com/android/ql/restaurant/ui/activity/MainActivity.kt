@@ -43,7 +43,7 @@ class MainActivity : BaseActivity() {
             exitTime = System.currentTimeMillis()
             toast("再按一次退出")
         }else{
-            finish()
+            moveTaskToBack(false)
         }
     }
 

@@ -48,10 +48,11 @@ class SelectTableFragment : BaseRecyclerViewFragment<TableBean>() {
         }
     }
 
+    override fun getEmptyMessage() = "暫無桌數~~"
+
     override fun initView(view: View?) {
         super.initView(view)
         mSwipeRefreshLayout.setBackgroundColor(Color.WHITE)
-        setRefreshEnable(false)
     }
 
     override fun onRefresh() {
@@ -67,7 +68,7 @@ class SelectTableFragment : BaseRecyclerViewFragment<TableBean>() {
         if (shopJson != null) {
             val footView = View.inflate(mContext, R.layout.layout_select_table_foot_view, null)
             footView.findViewById<Button>(R.id.mBtSelectTableNext).setOnClickListener {
-                SelectNumAndTimeFragment.startSelectNumAndTime(mContext, shopJson.optString("shop_phone"), shopJson.optString("shop_dizhi"), mArrayList[0].table_shop)
+                SelectNumAndTimeFragment.startSelectNumAndTime(mContext, shopJson.optString("shop_phone"), shopJson.optString("shop_dizhi"), "${mArrayList[0].table_shop}")
             }
             val tv_phone = footView.findViewById<TextView>(R.id.mTvBottomFootTel)
             val tv_address = footView.findViewById<TextView>(R.id.mTvBottomFootAddress)

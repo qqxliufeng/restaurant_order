@@ -1,90 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mSrfMine"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <RelativeLayout
-        android:id="@+id/mRlPersonalInfoFaceContainer"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:background="@drawable/img_mine_bg"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/mTvMineTitle"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:gravity="center"
-            android:text="我的"
-            android:textColor="#fff"
-            android:textSize="@dimen/sp_16"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/mIvMineFace"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
-            android:src="@drawable/icon_default_face" />
-
-        <TextView
-            android:id="@+id/mTvMineNickName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/mIvMineFace"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="登錄/註冊"
-            android:textColor="#fff"
-            android:textSize="18sp" />
-
-    </RelativeLayout>
-
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/mTvMinePersonalInfo"
-            style="@style/style_tv_1"
-            android:text="個人信息" />
+        <RelativeLayout
+            android:id="@+id/mRlPersonalInfoFaceContainer"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@drawable/img_mine_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mTvMineTitle"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:gravity="center"
+                android:text="我的"
+                android:textColor="#fff"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/mIvMineFace"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:src="@drawable/icon_default_face" />
+
+            <TextView
+                android:id="@+id/mTvMineNickName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mIvMineFace"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="登錄/註冊"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mTvMinePersonalInfo"
+                style="@style/style_tv_1"
+                android:text="個人信息" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@color/lineColor" />
+
+            <TextView
+                android:id="@+id/mTvMineOrder"
+                style="@style/style_tv_1"
+                android:drawableLeft="@drawable/icon_order_success"
+                android:text="我的取票" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@color/lineColor" />
+
+            <TextView
+                android:id="@+id/mTvMineCallRes"
+                style="@style/style_tv_1"
+                android:drawableLeft="@drawable/icon_phone"
+                android:text="聯繫餐廳" />
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_10"
-            android:background="@color/lineColor" />
-
-        <TextView
-            android:id="@+id/mTvMineOrder"
-            style="@style/style_tv_1"
-            android:drawableLeft="@drawable/icon_order_success"
-            android:text="我的取票" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_10"
-            android:background="@color/lineColor" />
-
-        <TextView
-            android:id="@+id/mTvMineCallRes"
-            style="@style/style_tv_1"
-            android:drawableLeft="@drawable/icon_phone"
-            android:text="聯繫餐廳" />
+            android:layout_height="match_parent"
+            android:background="#f3f3f3" />
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#f3f3f3" />
-
-</LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

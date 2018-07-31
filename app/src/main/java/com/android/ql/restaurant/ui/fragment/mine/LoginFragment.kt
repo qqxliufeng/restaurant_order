@@ -90,7 +90,7 @@ class LoginFragment : BaseNetWorkingFragment() {
     override fun onHandleSuccess(requestID: Int, obj: Any?) {
         super.onHandleSuccess(requestID, obj)
         if (obj!=null && obj is JSONObject) {
-            userPresent.onLogin(obj.optJSONObject(RESULT_OBJECT))
+            userPresent.onLogin(obj)
             finish()
         }
     }

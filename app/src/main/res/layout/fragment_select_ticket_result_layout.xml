@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#2b2b2b"
     android:orientation="vertical"
     android:padding="20dp">
@@ -85,21 +86,23 @@
                     android:textSize="@dimen/sp_14" />
 
                 <TextView
+                    android:id="@+id/mTvSelectTicketResultOrderNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:text="A10"
+                    tools:text="A10"
                     android:textColor="@color/colorPrimary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/mTvSelectTicketResultOrderCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="前方還有5桌"
+                    tools:text="前方還有5桌"
                     android:textColor="@color/normalTextColor"
                     android:textSize="@dimen/sp_14" />
 
@@ -126,17 +129,19 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/mTvSelectTicketResultNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="2人就餐" />
+                tools:text="2人就餐" />
 
             <TextView
+                android:id="@+id/mTvSelectTicketResultTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="取票時間：2018-06-29 11:30" />
+                tools:text="取票時間：2018-06-29 11:30" />
 
         </LinearLayout>
 
@@ -148,6 +153,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/mTvSelectTicketResultCancelOrder"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="@dimen/dp_10"
@@ -158,6 +164,7 @@
                 android:textColor="@color/deepTextColor" />
 
             <TextView
+                android:id="@+id/mTvSelectTicketResultSubmitOrder"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="@dimen/dp_10"

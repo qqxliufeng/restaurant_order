@@ -81,6 +81,9 @@ class RequestParamsHelper {
             return params
         }
 
+        val ACT_PERSONAL = "info"
+        fun getPersonalParam(uid: String) = getBaseParams().addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME, ACT_PERSONAL).addParam("uid", uid)
+
         /**              login model  end           **/
 
 
@@ -95,8 +98,19 @@ class RequestParamsHelper {
         fun getTicketParam(shopId: String, number: String, times: String) = getWithIdParams()
                 .addParam(ApiParams.MOD_NAME, SHOP_MODEL)
                 .addParam(ApiParams.ACT_NAME, "ticket")
+                .addParam("shop_id", shopId)
                 .addParam("number", number)
                 .addParam("times", times)
+
+        fun getTicketListParam(page: Int) = getWithPageParams(page).addParam(ApiParams.MOD_NAME, SHOP_MODEL).addParam(ApiParams.ACT_NAME, "ticketList")
+
+        fun getContactParam(page: Int) = getWithPageParams(page).addParam(ApiParams.MOD_NAME, SHOP_MODEL).addParam(ApiParams.ACT_NAME, "site")
+
+        fun getTicketUpParam(id: String, state: String) = getWithIdParams()
+                .addParam(ApiParams.MOD_NAME, SHOP_MODEL)
+                .addParam(ApiParams.ACT_NAME, "ticketUp")
+                .addParam("id", id)
+                .addParam("state", state)
 
         /**              member model  start           **/
 
@@ -121,10 +135,6 @@ class RequestParamsHelper {
         fun getDriverAuthParams() = getWithIdParams()
                 .addParam(ApiParams.MOD_NAME, USER_MODEL)
                 .addParam(ApiParams.ACT_NAME, ACT_RANKDO)
-
-
-        val ACT_PERSONAL = "info"
-        fun getPersonalParam(uid: String) = getBaseParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME, ACT_PERSONAL).addParam("uid", uid)
 
 
         val ACT_RANK_INFO = "rankinfo"

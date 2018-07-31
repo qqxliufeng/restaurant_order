@@ -7,6 +7,8 @@ import com.android.ql.restaurant.component.AppComponent;
 import com.android.ql.restaurant.component.AppModule;
 import com.android.ql.restaurant.component.DaggerAppComponent;
 
+import cn.jpush.android.api.JPushInterface;
+
 public class MyApplication extends MultiDexApplication {
 
     private AppComponent appComponent;
@@ -19,6 +21,7 @@ public class MyApplication extends MultiDexApplication {
         super.onCreate();
         application = this;
         appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+        JPushInterface.init(this);
     }
 
     public static MyApplication getInstance() {

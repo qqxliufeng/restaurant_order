@@ -13,6 +13,17 @@ android {
         versionCode 1
         versionName "1.0.0"
         multiDexEnabled true
+
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64'//, 'arm64-v8a'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: "com.android.ql.restaurant",
+                JPUSH_APPKEY : "90ab8c11707299ace53647cc", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
     }
     signingConfigs{
         release{
@@ -67,5 +78,7 @@ dependencies {
     implementation rootProject.ext.dependencies["libFlexBox"]
     implementation rootProject.ext.dependencies["libMultiDex"]
     implementation 'com.soundcloud.android:android-crop:1.0.1@aar'
+    implementation 'cn.jiguang.sdk:jpush:3.1.1'
+    implementation 'cn.jiguang.sdk:jcore:1.1.9'
 
 }

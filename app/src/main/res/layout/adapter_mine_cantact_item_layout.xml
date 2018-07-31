@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
     android:paddingLeft="30dp"
@@ -9,18 +11,20 @@
     android:paddingBottom="20dp">
 
     <TextView
+        android:id="@+id/mTvMineContactItemPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="A:TEL:02342434535"
+        tools:text="A:TEL:02342434535"
         android:autoLink="phone"
         android:textSize="@dimen/sp_14"
         android:textColor="@color/deepTextColor"/>
 
     <TextView
+        android:id="@+id/mTvMineContactItemAddress"
         android:layout_marginTop="@dimen/dp_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="地址：香港九龍旺角通菜街132號"
+        tools:text="地址：香港九龍旺角通菜街132號"
         android:textColor="@color/deepTextColor"
         android:textSize="@dimen/sp_14"/>
 

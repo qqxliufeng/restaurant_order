@@ -13,7 +13,6 @@ import com.android.ql.restaurant.utils.isEmpty
 import com.android.ql.restaurant.utils.isPhone
 import kotlinx.android.synthetic.main.fragment_forget_password_layout.*
 import org.jetbrains.anko.support.v4.toast
-import org.json.JSONObject
 
 class ForgetPasswordFragment : BaseNetWorkingFragment() {
 
