@@ -1,27 +1,43 @@
 package com.android.ql.restaurant.ui.fragment.bottom
 
+import android.app.Dialog
 import android.graphics.Color
+import android.net.Uri
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import com.android.ql.restaurant.R
-import com.android.ql.restaurant.data.ShopBean
-import com.android.ql.restaurant.data.UserInfo
-import com.android.ql.restaurant.ui.activity.FragmentContainerActivity
+import com.android.ql.restaurant.data.*
 import com.android.ql.restaurant.ui.fragment.base.BaseRecyclerViewFragment
 import com.android.ql.restaurant.ui.fragment.mine.LoginFragment
 import com.android.ql.restaurant.ui.fragment.ticket.SelectTableFragment
-import com.android.ql.restaurant.utils.GlideManager
-import com.android.ql.restaurant.utils.RequestParamsHelper
+import com.android.ql.restaurant.utils.*
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import kotlinx.android.synthetic.main.fragment_bottom_ticket_layout.*
+import org.jetbrains.anko.support.v4.toast
+import org.json.JSONObject
 
 class BottomTicketFragment : BaseRecyclerViewFragment<ShopBean>() {
 
     companion object {
         const val TICKET_SHOP_INFO = "ticket_shop_ticket"
     }
+
+
+    private val notifyDialog by lazy {
+        Dialog(mContext)
+    }
+
+    private val postTicketSubscription by lazy {
+        RxBus.getDefault().toObservable(PostTicketBean::class.java).subscribe {
+            //接收到通知，重新請求前方數據接口
+            mPresent.getDataByPost(0x1, RequestParamsHelper.getQueueParams())
+        }
+    }
+
 
     private var currentItem: ShopBean? = null
 
@@ -39,8 +55,10 @@ class BottomTicketFragment : BaseRecyclerViewFragment<ShopBean>() {
     override fun initView(view: View?) {
         super.initView(view)
         registerLoginSuccessBus()
+        postTicketSubscription
         (mTlTicketTitle.layoutParams as ViewGroup.MarginLayoutParams).topMargin = statusBarHeight
         mSwipeRefreshLayout.setBackgroundColor(Color.parseColor("#F6F0F1"))
+        mPresent.getDataByPost(0x2, RequestParamsHelper.getVersionUpdate())
     }
 
     override fun onRefresh() {
@@ -55,7 +73,67 @@ class BottomTicketFragment : BaseRecyclerViewFragment<ShopBean>() {
 
     override fun <T : Any?> onRequestSuccess(requestID: Int, result: T) {
         super.onRequestSuccess(requestID, result)
-        processList(result as String, ShopBean::class.java)
+        when (requestID) {
+            0x0 -> {
+                processList(result as String, ShopBean::class.java)
+                mPresent.getDataByPost(0x1, RequestParamsHelper.getQueueParams())
+            }
+            0x1 -> {
+                handleSuccess(requestID, result)
+            }
+            0x2 -> {//版本更新
+                handleSuccess(requestID, result)
+            }
+        }
+    }
+
+    override fun onHandleSuccess(requestID: Int, obj: Any?) {
+        super.onHandleSuccess(requestID, obj)
+        when (requestID) {
+            0x1 -> {
+                if (obj != null && obj is JSONObject) {
+                    val dataJson = obj.optJSONObject(RESULT_OBJECT)
+                    UserInfo.getInstance().ticketBean.ticket_shop = dataJson.optString("ticket_shop")
+                    UserInfo.getInstance().ticketBean.ticket_dates = dataJson.optString("ticket_dates")
+                    UserInfo.getInstance().ticketBean.ticket_table = dataJson.optString("ticket_table")
+                    UserInfo.getInstance().ticketBean.ticket_id = dataJson.optLong("ticket_id")
+                    UserInfo.getInstance().ticketBean.ticket_letter = dataJson.optString("ticket_letter")
+                    UserInfo.getInstance().ticketBean.ticket_count = dataJson.optInt("ticket_count")
+
+                    if (UserInfo.getInstance().ticketBean!=null &&
+                            UserInfo.getInstance().ticketBean.ticket_letter!=null &&
+                            UserInfo.getInstance().ticketBean.ticket_count != 0){
+                        val contentView = View.inflate(mContext, R.layout.dialog_notify_layout, null)
+                        val tv_num = contentView.findViewById<TextView>(R.id.mTvNotifyDialogNum)
+                        tv_num.setDiffColorText("您的號碼", "${UserInfo.getInstance().ticketBean.ticket_letter}", color2 = "#880015")
+                        contentView.findViewById<TextView>(R.id.mTvNotifyDialogFont).text = "前方還有${UserInfo.getInstance().ticketBean.ticket_count}桌"
+                        contentView.findViewById<Button>(R.id.mBtNotifyDialogSubmit).setOnClickListener {
+                            notifyDialog.dismiss()
+                        }
+                        notifyDialog.setContentView(contentView)
+                        notifyDialog.show()
+                    }
+                }
+            }
+            0x2 -> {
+                try {
+                    if (obj!=null && obj is JSONObject){
+                        val dataJson = obj.optJSONObject(RESULT_OBJECT)
+                        val versionCode = dataJson.optString("appApkVer")
+                        if (versionCode.toInt() > VersionHelp.currentVersionCode(mContext)) {
+                            VersionInfo.getInstance().versionCode = versionCode.toInt()
+                            VersionInfo.getInstance().content = dataJson.optString("appApkIntro")
+                            VersionInfo.getInstance().downUrl = dataJson.optString("appApk")
+                            alert("发现新版本", VersionInfo.getInstance().content, "立即下载", "暂不下载", { _, _ ->
+                                toast("正在下载……")
+                                VersionHelp.downNewVersion(mContext, Uri.parse(VersionInfo.getInstance().downUrl), "${System.currentTimeMillis()}")
+                            }, null)
+                        }
+                    }
+                } catch (e: Exception) {
+                }
+            }
+        }
     }
 
 
@@ -74,6 +152,14 @@ class BottomTicketFragment : BaseRecyclerViewFragment<ShopBean>() {
         super.onLoginSuccess(userInfo)
         if (UserInfo.getInstance().isLogin && UserInfo.loginToken == TICKET_SHOP_INFO) {
             SelectTableFragment.startSelectTable(mContext, currentItem!!.shop_id)
+        }
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+        if (notifyDialog.isShowing) {
+            notifyDialog.dismiss()
         }
     }
 

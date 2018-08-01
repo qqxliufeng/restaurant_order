@@ -31,9 +31,6 @@ public class ViewUserAction implements IViewUserAction {
             UserInfo.getInstance().setUser_rank(userInfoResult.optString("user_rank"));
             UserInfo.getInstance().setUser_as(userInfoResult.optString("user_as"));
             JSONObject ticketInfoResult = result.optJSONObject("ticket");
-            if (UserInfo.getInstance().getTicketBean() == null) {
-                UserInfo.getInstance().setTicketBean(new TicketBean());
-            }
             UserInfo.getInstance().getTicketBean().setTicket_shop(ticketInfoResult.optString("ticket_shop"));
             UserInfo.getInstance().getTicketBean().setTicket_dates(ticketInfoResult.optString("ticket_dates"));
             UserInfo.getInstance().getTicketBean().setTicket_table(ticketInfoResult.optString("ticket_table"));

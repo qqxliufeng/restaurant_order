@@ -20,7 +20,7 @@ class MineOrderListFragment : BaseRecyclerViewFragment<TicketBean>() {
     override fun createAdapter() = object : BaseQuickAdapter<TicketBean, BaseViewHolder>(R.layout.adapter_mine_order_item_layout, mArrayList) {
         override fun convert(helper: BaseViewHolder?, item: TicketBean?) {
             helper!!.setText(R.id.mTvMineTicketItemName, item!!.ticket_shop_name)
-            helper.setText(R.id.mTvMineTicketItemCount, "預計用餐人數 ${item.ticket_number} 人")
+            helper.setText(R.id.mTvMineTicketItemCount, "預計用餐人數 ${item.ticket_cou} 人")
             helper.setText(R.id.mTvMineTicketItemTime, "預計用餐時間：${item.ticket_dates}")
             helper.setText(R.id.mTvMineTicketItemNum, item.ticket_letter)
             val tv_submit = helper.getView<TextView>(R.id.mTvMineTicketItemSubmit)

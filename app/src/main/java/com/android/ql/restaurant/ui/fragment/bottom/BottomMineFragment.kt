@@ -17,9 +17,7 @@ import org.json.JSONObject
 
 class BottomMineFragment : BaseNetWorkingFragment() {
 
-//    private val notifyDialog by lazy {
-//        Dialog(mContext)
-//    }
+
 
     companion object {
         const val MINE_USER_INFO_FLAG = "mine_user_info_flag"
@@ -92,15 +90,6 @@ class BottomMineFragment : BaseNetWorkingFragment() {
                 LoginFragment.startLogin(mContext)
             }
         }
-
-//        val contentView = View.inflate(mContext,R.layout.dialog_notify_layout,null)
-//        val tv_num = contentView.findViewById<TextView>(R.id.mTvNotifyDialogNum)
-//        tv_num.setDiffColorText("您的號碼","A10",color2 = "#880015")
-//        contentView.findViewById<Button>(R.id.mBtNotifyDialogSubmit).setOnClickListener {
-//            notifyDialog.dismiss()
-//        }
-//        notifyDialog.setContentView(contentView)
-//        notifyDialog.show()
     }
 
 

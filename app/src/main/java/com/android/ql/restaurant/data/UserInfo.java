@@ -52,8 +52,6 @@ public class UserInfo {
     private String user_as;
     private TicketBean ticketBean;
 
-    private String count = "0";
-    private String number = "";
 
     public String getUser_as() {
         return user_as;
@@ -64,27 +62,14 @@ public class UserInfo {
     }
 
     public TicketBean getTicketBean() {
+        if (ticketBean == null){
+            ticketBean = new TicketBean();
+        }
         return ticketBean;
     }
 
     public void setTicketBean(TicketBean ticketBean) {
         this.ticketBean = ticketBean;
-    }
-
-    public String getCount() {
-        return count;
-    }
-
-    public void setCount(String count) {
-        this.count = count;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public String getUser_id() {

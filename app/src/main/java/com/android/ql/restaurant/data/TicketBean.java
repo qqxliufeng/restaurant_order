@@ -37,7 +37,7 @@ public class TicketBean {
     private String ticket_is_show;
     private String ticket_times;
     private String ticket_letter_key;
-    private String ticket_cou; // 用餐人数
+    private int ticket_cou; // 用餐人数
     private String ticket_shop_name;
     private int ticket_count;
 
@@ -138,11 +138,11 @@ public class TicketBean {
         this.ticket_letter_key = ticket_letter_key;
     }
 
-    public String getTicket_cou() {
+    public int getTicket_cou() {
         return ticket_cou;
     }
 
-    public void setTicket_cou(String ticket_cou) {
+    public void setTicket_cou(int ticket_cou) {
         this.ticket_cou = ticket_cou;
     }
 

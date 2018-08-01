@@ -15,6 +15,7 @@ class MainActivity : BaseActivity() {
     private var exitTime: Long = 0L
 
 
+
     override fun getLayoutId() = R.layout.activity_main_layout
 
     override fun initView() {
@@ -35,6 +36,8 @@ class MainActivity : BaseActivity() {
         }
         BottomNavigationViewHelper.disableShiftMode(mBvMainView)
         mVpMainContainer.adapter = MainBottomViewPagerAdapter(supportFragmentManager)
+
+
     }
 
 

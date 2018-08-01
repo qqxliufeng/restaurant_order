@@ -117,8 +117,8 @@ class SelectNumAndTimeFragment : BaseNetWorkingFragment() {
         super.onHandleSuccess(requestID, obj)
         if (obj != null && obj is JSONObject) {
             val dataJSONObject = obj.optJSONObject("data")
-            UserInfo.getInstance().count = dataJSONObject.optString("count")
-            UserInfo.getInstance().number = dataJSONObject.optString("number")
+            UserInfo.getInstance().ticketBean.ticket_count = dataJSONObject.optInt("count")
+            UserInfo.getInstance().ticketBean.ticket_letter = dataJSONObject.optString("number")
             toast("取票成功~")
             SelectTicketResultFragment.startSelectTicket(mContext, dataJSONObject.optString("ticket_id"), num!!, time!!)
             finish()

@@ -34,8 +34,8 @@ class SelectTicketResultFragment : BaseNetWorkingFragment() {
     override fun initView(view: View?) {
         mTvSelectTicketResultNum.text = "${arguments!!.getString("num")}人就餐"
         mTvSelectTicketResultTime.text = "取票時間：${arguments!!.getString("time")}"
-        mTvSelectTicketResultOrderNum.text = UserInfo.getInstance().number
-        mTvSelectTicketResultOrderCount.text = "前方還有${UserInfo.getInstance().count}桌"
+        mTvSelectTicketResultOrderNum.text = UserInfo.getInstance().ticketBean.ticket_letter
+        mTvSelectTicketResultOrderCount.text = "前方還有${UserInfo.getInstance().ticketBean.ticket_count}桌"
         mTvSelectTicketResultCancelOrder.setOnClickListener {
             alert("確定要取消排隊嗎？", "取消", "不取消") { _, _ ->
                 state = "3"

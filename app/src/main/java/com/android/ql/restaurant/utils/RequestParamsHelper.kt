@@ -1,5 +1,6 @@
 package com.android.ql.restaurant.utils
 
+import android.support.annotation.StyleRes
 import com.android.ql.restaurant.component.ApiParams
 import com.android.ql.restaurant.data.UserInfo
 
@@ -111,6 +112,10 @@ class RequestParamsHelper {
                 .addParam(ApiParams.ACT_NAME, "ticketUp")
                 .addParam("id", id)
                 .addParam("state", state)
+
+        fun getQueueParams() = getWithIdParams().addParam(ApiParams.MOD_NAME, SHOP_MODEL).addParam(ApiParams.ACT_NAME, "queue")
+
+        fun getVersionUpdate(type:String = "Android") = getBaseParams().addParam(ApiParams.MOD_NAME, SHOP_MODEL).addParam(ApiParams.ACT_NAME, "verupdate")
 
         /**              member model  start           **/
 
