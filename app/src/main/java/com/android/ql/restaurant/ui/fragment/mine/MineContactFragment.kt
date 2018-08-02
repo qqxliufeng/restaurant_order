@@ -14,6 +14,7 @@ class MineContactFragment : BaseRecyclerViewFragment<ShopBean>() {
         override fun convert(helper: BaseViewHolder?, item: ShopBean?) {
             helper!!.setText(R.id.mTvMineContactItemPhone, "TEL：${item!!.shop_phone}")
             helper.setText(R.id.mTvMineContactItemAddress, "地址：${item.shop_dizhi}")
+            helper.setText(R.id.mTvMineContactItemName, item.shop_name)
         }
     }
 
