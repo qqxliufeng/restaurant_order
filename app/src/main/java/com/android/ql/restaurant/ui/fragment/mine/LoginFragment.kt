@@ -44,8 +44,6 @@ class LoginFragment : BaseNetWorkingFragment() {
         mTvLoginRegister.setOnClickListener {
             FragmentContainerActivity.from(mContext).setClazz(RegisterFragment::class.java).setTitle(mTvLoginRegister.text.toString()).setNeedNetWorking(true).start()
         }
-        mEtLoginPhone.setText("549436666")
-        mEtLoginPassword.setText("123456")
         mBtLogin.setOnClickListener {
             if (mEtLoginPhone.isEmpty()) {
                 toast("請輸入手機號")

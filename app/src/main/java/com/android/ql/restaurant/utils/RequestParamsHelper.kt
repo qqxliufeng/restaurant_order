@@ -61,9 +61,9 @@ class RequestParamsHelper {
         val ACT_LOGIN = "login"
         val ACT_FORGETPW = "loginUp"
 
-        fun getRegisterParams(phone: String = "", pass: String = ""): ApiParams {
+        fun getRegisterParams(type: String = "1",phone: String = "", pass: String = ""): ApiParams {
             val params = getBaseParams().addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME, ACT_REGISTER)
-            params.addParam("phone", phone).addParam("pass", pass)
+            params.addParam("phone", phone).addParam("pass", pass).addParam("type",type)
             return params
         }
 
@@ -113,9 +113,9 @@ class RequestParamsHelper {
                 .addParam("id", id)
                 .addParam("state", state)
 
-        fun getQueueParams() = getWithIdParams().addParam(ApiParams.MOD_NAME, SHOP_MODEL).addParam(ApiParams.ACT_NAME, "queue")
+        fun getQueueParams(ticket_id: String = "") = getWithIdParams().addParam(ApiParams.MOD_NAME, SHOP_MODEL).addParam(ApiParams.ACT_NAME, "queue").addParam("ticket_id",ticket_id)
 
-        fun getVersionUpdate(type:String = "Android") = getBaseParams().addParam(ApiParams.MOD_NAME, SHOP_MODEL).addParam(ApiParams.ACT_NAME, "verupdate")
+        fun getVersionUpdate(type: String = "Android") = getBaseParams().addParam(ApiParams.MOD_NAME, SHOP_MODEL).addParam(ApiParams.ACT_NAME, "verupdate")
 
         /**              member model  start           **/
 

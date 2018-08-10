@@ -57,7 +57,7 @@ class RegisterFragment : BaseNetWorkingFragment() {
                 toast("兩次密碼不一致")
                 return@setOnClickListener
             }
-            mPresent.getDataByPost(0x0, RequestParamsHelper.getRegisterParams(mEtRegisterPhone.getTextString(), mEtRegisterPassword.getTextString()))
+            mPresent.getDataByPost(0x0, RequestParamsHelper.getRegisterParams("1", mEtRegisterPhone.getTextString(), mEtRegisterPassword.getTextString()))
         }
     }
 
@@ -85,7 +85,7 @@ class RegisterFragment : BaseNetWorkingFragment() {
         if (obj != null) {
             toast("恭喜，註冊成功，請登錄！")
             finish()
-        }else{
+        } else {
             toast("註冊失敗~")
         }
     }

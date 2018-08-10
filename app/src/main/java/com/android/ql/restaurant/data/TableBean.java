@@ -8,7 +8,7 @@ public class TableBean {
     private long table_shop;
     private String table_name;
     private String table_intro;
-    private String table_count;
+    private int table_count;
     private String table_max;
     private String table_min;
 
@@ -44,11 +44,11 @@ public class TableBean {
         this.table_intro = table_intro;
     }
 
-    public String getTable_count() {
+    public int getTable_count() {
         return table_count;
     }
 
-    public void setTable_count(String table_count) {
+    public void setTable_count(int table_count) {
         this.table_count = table_count;
     }
 

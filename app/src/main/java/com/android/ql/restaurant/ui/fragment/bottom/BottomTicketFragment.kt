@@ -76,7 +76,6 @@ class BottomTicketFragment : BaseRecyclerViewFragment<ShopBean>() {
         when (requestID) {
             0x0 -> {
                 processList(result as String, ShopBean::class.java)
-                mPresent.getDataByPost(0x1, RequestParamsHelper.getQueueParams())
             }
             0x1 -> {
                 handleSuccess(requestID, result)

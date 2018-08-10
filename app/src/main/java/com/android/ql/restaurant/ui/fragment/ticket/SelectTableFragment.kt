@@ -39,12 +39,14 @@ class SelectTableFragment : BaseRecyclerViewFragment<TableBean>() {
         }
     }
 
+    private val footView by lazy { View.inflate(mContext, R.layout.layout_select_table_foot_view, null) }
+
     override fun createAdapter() = object : BaseQuickAdapter<TableBean, BaseViewHolder>(R.layout.adapter_select_table_item_layout, mArrayList) {
         override fun convert(helper: BaseViewHolder?, item: TableBean?) {
             val tv_name = helper!!.getView<TextView>(R.id.mTvSelectTableItemName)
             tv_name.setDiffColorText(item!!.table_name, " ${item.table_intro}")
             val tv_num = helper.getView<TextView>(R.id.mTvSelectTableItemFrontNum)
-            tv_num.text = Html.fromHtml("前方 ${item.table_count.fromHtml("#880015")} 桌")
+            tv_num.text = Html.fromHtml("前方 ${item.table_count.toString().fromHtml("#880015")} 桌")
         }
     }
 
@@ -65,8 +67,7 @@ class SelectTableFragment : BaseRecyclerViewFragment<TableBean>() {
         processList(result as String, TableBean::class.java)
         val jsonObject = JSONObject(result)
         val shopJson = jsonObject.optJSONObject("shop")
-        if (shopJson != null) {
-            val footView = View.inflate(mContext, R.layout.layout_select_table_foot_view, null)
+        if (shopJson != null && footView.parent == null) {
             footView.findViewById<Button>(R.id.mBtSelectTableNext).setOnClickListener {
                 SelectNumAndTimeFragment.startSelectNumAndTime(mContext, shopJson.optString("shop_phone"), shopJson.optString("shop_dizhi"), "${mArrayList[0].table_shop}")
             }

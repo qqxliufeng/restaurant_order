@@ -30,14 +30,17 @@ public class ViewUserAction implements IViewUserAction {
             UserInfo.getInstance().setUser_pic(userInfoResult.optString("user_pic"));
             UserInfo.getInstance().setUser_rank(userInfoResult.optString("user_rank"));
             UserInfo.getInstance().setUser_as(userInfoResult.optString("user_as"));
+            UserInfo.getInstance().setUser_type(userInfoResult.optString("user_type"));
             JSONObject ticketInfoResult = result.optJSONObject("ticket");
-            UserInfo.getInstance().getTicketBean().setTicket_shop(ticketInfoResult.optString("ticket_shop"));
-            UserInfo.getInstance().getTicketBean().setTicket_dates(ticketInfoResult.optString("ticket_dates"));
-            UserInfo.getInstance().getTicketBean().setTicket_table(ticketInfoResult.optString("ticket_table"));
-            UserInfo.getInstance().getTicketBean().setTicket_id(ticketInfoResult.optLong("ticket_id"));
-            UserInfo.getInstance().getTicketBean().setTicket_letter(ticketInfoResult.optString("ticket_letter"));
-            UserInfo.getInstance().getTicketBean().setTicket_count(ticketInfoResult.optInt("ticket_count"));
-            JPushInterface.setAlias(MyApplication.getInstance(),0,UserInfo.getInstance().getUser_as());
+            if (ticketInfoResult != null) {
+                UserInfo.getInstance().getTicketBean().setTicket_shop(ticketInfoResult.optString("ticket_shop"));
+                UserInfo.getInstance().getTicketBean().setTicket_dates(ticketInfoResult.optString("ticket_dates"));
+                UserInfo.getInstance().getTicketBean().setTicket_table(ticketInfoResult.optString("ticket_table"));
+                UserInfo.getInstance().getTicketBean().setTicket_id(ticketInfoResult.optLong("ticket_id"));
+                UserInfo.getInstance().getTicketBean().setTicket_letter(ticketInfoResult.optString("ticket_letter"));
+                UserInfo.getInstance().getTicketBean().setTicket_count(ticketInfoResult.optInt("ticket_count"));
+            }
+            JPushInterface.setAlias(MyApplication.getInstance(), 0, UserInfo.getInstance().getUser_as());
             PreferenceUtils.setPrefString(MyApplication.application, UserInfo.USER_ID_FLAG, UserInfo.getInstance().getUser_id());
             return true;
         } catch (Exception e) {

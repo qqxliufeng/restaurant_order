@@ -48,6 +48,7 @@ public class UserInfo {
     private String user_nickname;
     private String user_pic;
     private String user_rank;
+    private String user_type;
 
     private String user_as;
     private TicketBean ticketBean;
@@ -118,6 +119,14 @@ public class UserInfo {
 
     public void setUser_rank(String user_rank) {
         this.user_rank = user_rank;
+    }
+
+    public String getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(String user_type) {
+        this.user_type = user_type;
     }
 
     public boolean isLogin() {

@@ -4,9 +4,11 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.android.ql.restaurant.R
+import com.android.ql.restaurant.data.UserInfo
 import com.android.ql.restaurant.ui.fragment.bottom.BottomMineFragment
 import com.android.ql.restaurant.ui.fragment.bottom.BottomTicketFragment
 import com.android.ql.restaurant.utils.BottomNavigationViewHelper
+import com.tencent.bugly.crashreport.CrashReport
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import org.jetbrains.anko.toast
 
@@ -36,8 +38,6 @@ class MainActivity : BaseActivity() {
         }
         BottomNavigationViewHelper.disableShiftMode(mBvMainView)
         mVpMainContainer.adapter = MainBottomViewPagerAdapter(supportFragmentManager)
-
-
     }
 
 
@@ -46,7 +46,11 @@ class MainActivity : BaseActivity() {
             exitTime = System.currentTimeMillis()
             toast("再按一次退出")
         }else{
-            moveTaskToBack(false)
+            if (UserInfo.getInstance().isLogin) {
+                moveTaskToBack(false)
+            }else{
+                finish()
+            }
         }
     }
 

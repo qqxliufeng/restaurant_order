@@ -18,7 +18,6 @@ import org.json.JSONObject
 class BottomMineFragment : BaseNetWorkingFragment() {
 
 
-
     companion object {
         const val MINE_USER_INFO_FLAG = "mine_user_info_flag"
         const val MINE_TICKET_FLAG = "mine_ticket_flag"
@@ -90,6 +89,46 @@ class BottomMineFragment : BaseNetWorkingFragment() {
                 LoginFragment.startLogin(mContext)
             }
         }
+
+        if (UserInfo.getInstance().isLogin) {
+            when(UserInfo.getInstance().user_type) {
+                "1" -> mBtLogout.text = "退出登錄"
+                "2" -> mBtLogout.text = "切換登錄"
+                else -> {
+                    mBtLogout.text = "退出登錄"
+                }
+            }
+        } else {
+            mBtLogout.text = "登錄"
+        }
+
+        mBtLogout.setOnClickListener {
+            if (UserInfo.getInstance().isLogin) {
+                when(UserInfo.getInstance().user_type) {
+                    "1" -> //正式身份
+                        alert("提示", "是否要退出登录？", "退出", "取消", { _, _ ->
+                            logout()
+                        }, null)
+                    "2" -> //游客身份
+                        LoginFragment.startLogin(mContext)
+                    else -> {
+                        alert("提示", "是否要退出登录？", "退出", "取消", { _, _ ->
+                            logout()
+                        }, null)
+                    }
+                }
+            } else {
+                LoginFragment.startLogin(mContext)
+            }
+        }
+    }
+
+    private fun logout() {
+        UserInfo.clearUserCache(mContext)
+        UserInfo.getInstance().loginOut()
+        mTvMineNickName.text = "登錄/註冊"
+        mBtLogout.text = "登錄/註冊"
+        mIvMineFace.setImageResource(R.drawable.icon_default_face)
     }
 
 
@@ -117,6 +156,17 @@ class BottomMineFragment : BaseNetWorkingFragment() {
 
     override fun onLoginSuccess(userInfo: UserInfo?) {
         super.onLoginSuccess(userInfo)
+        if (UserInfo.getInstance().isLogin) {
+            when(UserInfo.getInstance().user_type) {
+                "1" -> mBtLogout.text = "退出登錄"
+                "2" -> mBtLogout.text = "切換登錄"
+                else -> {
+                    mBtLogout.text = "退出登錄"
+                }
+            }
+        } else {
+            mBtLogout.text = "登錄"
+        }
         if (UserInfo.getInstance().isLogin) {
             GlideManager.loadFaceCircleImage(mContext, UserInfo.getInstance().user_pic, mIvMineFace)
             mTvMineNickName.text = UserInfo.getInstance().user_nickname

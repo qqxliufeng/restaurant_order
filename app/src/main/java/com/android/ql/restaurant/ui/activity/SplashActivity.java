@@ -34,7 +34,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * @author lf on 18.2.8
  */
 
-public class SplashActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks,EasyPermissions.RationaleCallbacks {
+public class SplashActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks, EasyPermissions.RationaleCallbacks {
 
     /**
      * 权限标识
@@ -79,7 +79,7 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
      * 请求权限
      */
     private void requestPermission() {
-        EasyPermissions.requestPermissions(this, getResources().getString(R.string.app_name)+" 應用程序運行需要您的 相機、存儲 權限，否則運行失敗！", WRITE_AND_CAMERA, REQUEST_PERMISSIONS);
+        EasyPermissions.requestPermissions(this, getResources().getString(R.string.app_name) + " 應用程序運行需要您的 相機、存儲 權限，否則運行失敗！", WRITE_AND_CAMERA, REQUEST_PERMISSIONS);
     }
 
 
@@ -192,11 +192,9 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
      */
     private void isLogin() {
         if (UserInfo.isCacheUserId(this)) {
-            mPresent.getDataByPost(0x0,RequestParamsHelper.Companion.getPersonalParam(UserInfo.getUserIdFromCache(this)));
+            mPresent.getDataByPost(0x0, RequestParamsHelper.Companion.getPersonalParam(UserInfo.getUserIdFromCache(this)));
         } else {
-            startMain();
+            mPresent.getDataByPost(0x0, RequestParamsHelper.Companion.getRegisterParams("2", "", ""));
         }
     }
-
-
 }
