@@ -36,6 +36,7 @@ class SelectNumAndTimeFragment : BaseNetWorkingFragment() {
     }
 
     private val timeDialog by lazy {
+
         TimePickerDialog(mContext, { view, hourOfDay, minute ->
             time = "$hourOfDay:$minute"
             mTvSelectTimeText.text = "$date $time"
@@ -47,7 +48,7 @@ class SelectNumAndTimeFragment : BaseNetWorkingFragment() {
 
     private val date by lazy {
         val millis = System.currentTimeMillis()
-        val dataFormat = SimpleDateFormat("YYYY-MM-dd")
+        val dataFormat = SimpleDateFormat("yyyy-MM-dd")
         dataFormat.format(Date(millis))
     }
 

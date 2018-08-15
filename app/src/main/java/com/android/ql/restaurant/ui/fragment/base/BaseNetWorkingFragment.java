@@ -13,7 +13,6 @@ import com.android.ql.restaurant.ui.activity.FragmentContainerActivity;
 import com.android.ql.restaurant.utils.RxBus;
 
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Objects;
@@ -69,27 +68,39 @@ public abstract class BaseNetWorkingFragment extends BaseFragment implements INe
     public void onLogoutSuccess(String logout) {
     }
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        setGetDataFromNetPresent(context);
+    }
+
+    private void setGetDataFromNetPresent(Context context) {
         if (context instanceof FragmentContainerActivity) {
             if (getParentFragment() == null) {
                 GetDataFromNetPresent present = ((FragmentContainerActivity) context).getPresent();
                 if (present != null) {
                     this.mPresent = present;
                 } else {
-                    DaggerApiServerComponent.builder().appComponent(MyApplication.getInstance().getAppComponent()).build().inject(this);
+                    injectPresent();
                 }
             } else {
-                DaggerApiServerComponent.builder().appComponent(MyApplication.getInstance().getAppComponent()).build().inject(this);
+                injectPresent();
             }
         } else {
-            DaggerApiServerComponent.builder().appComponent(MyApplication.getInstance().getAppComponent()).build().inject(this);
+            injectPresent();
         }
-        if (mPresent != null) {
-            this.mPresent.setNetDataPresenter(this);
+
+        if (mPresent == null) {
+            injectPresent();
         }
+        if (mPresent == null) {
+            throw new NullPointerException("mPresent is null,please check Present.");
+        }
+        this.mPresent.setNetDataPresenter(this);
+    }
+
+    private void injectPresent() {
+        DaggerApiServerComponent.builder().appComponent(MyApplication.getInstance().getAppComponent()).build().inject(this);
     }
 
     public void getFastProgressDialog(String message) {
@@ -116,7 +127,6 @@ public abstract class BaseNetWorkingFragment extends BaseFragment implements INe
             progressDialog = null;
         }
     }
-
 
     public <T> BaseNetResult checkResultCode(T json) {
         try {
@@ -151,10 +161,8 @@ public abstract class BaseNetWorkingFragment extends BaseFragment implements INe
         }
     }
 
-
     public void onHandleSuccess(int requestID, Object obj) {
     }
-
 
     @Override
     public void onDestroyView() {
